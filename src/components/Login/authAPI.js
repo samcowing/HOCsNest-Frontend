@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'http://127.0.0.1:8000/api/'
+const baseURL = 'http://backend-hocsnest.herokuapp.com/api/'
 
 const axiosConnection = axios.create({
     baseURL: baseURL,

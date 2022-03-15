@@ -6,6 +6,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import { styled } from '@mui/material/styles';
+import React from 'react'
+import uuid from 'react-uuid'
 
 const LightTextField = styled(TextField)({
   '& .MuiOutlinedInput-root': {
@@ -38,7 +40,7 @@ function Chat({ theme }) {
   const [user, setUser] = useState('')
   const [room, setRoom] = useState('')
   const [client, setClient] = useState({})
-  const [activeRoom, setActiveRoom] = useState(false)
+  const [activeRoom, setActiveRoom] = useState('false')
 
   const [roomsArr, setRoomsArr] = useState([
     { name: 'home' },
@@ -51,14 +53,14 @@ function Chat({ theme }) {
   const roomSelect = async (e) => {
     e.preventDefault()
     const token = window.localStorage.getItem('refresh_token')
-    const new_client = new W3CWebSocket('ws://backend-hocsnest.herokuapp.com/ws/chat/' + room + '/' + '?token=' + token)
+    const new_client = new W3CWebSocket('wss://backend-hocsnest.herokuapp.com/ws/chat/' + room + '/' + '?token=' + token)
     if (token === null) {
       navigate('/login')
     }
     setClient(new_client)
     setActiveRoom(room)
     if (activeRoom === room) {
-      setActiveRoom(true)
+      setActiveRoom('true')
     }
     setInputValue('')
   }
@@ -143,7 +145,7 @@ function Chat({ theme }) {
         <div className='room-wrapper'>
 
           {roomsArr.map(rooms =>
-            <form className='room-form' noValidate onSubmit={roomSelect}>
+            <form key={uuid()} className='room-form' noValidate onSubmit={roomSelect}>
               <div className='room-form-wrapper' key={rooms.name}>
                 <button type="submit" className={'btn room-form-btn' + (activeRoom === rooms.name ? ' room-active-btn' : '')} onClick={() => setRoom(rooms.name)}>
                   <input type="image" id="room-name" alt="room-icon" className='room-form-img' src="https://i.imgur.com/W7mI5kZ.png" />
@@ -165,7 +167,7 @@ function Chat({ theme }) {
           <div className='chat'>
             <div className='chat-map'>
               {messages.map(message =>
-                <div className={'chat-map-wrapper' + (message.username === user.username ? ' active-user' : '')} >
+                <div key={uuid()} className={'chat-map-wrapper' + (message.username === user.username ? ' active-user' : '')} >
                   <Avatar src='https://i.imgur.com/W7mI5kZ.png' alt={user.username} className={'chat-map-avatar' + (message.username === user.username ? ' active-user-avatar' : '')} />
                   <div className='chat-map-userinput'>
                     <h5 className={'chat-map-user' + (message.username === user.username ? ' active-user-text' : '')}>{message.username}</h5>

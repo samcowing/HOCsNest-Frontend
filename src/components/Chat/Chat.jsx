@@ -6,7 +6,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import { styled } from '@mui/material/styles';
-import React from 'react'
 import uuid from 'react-uuid'
 
 const LightTextField = styled(TextField)({

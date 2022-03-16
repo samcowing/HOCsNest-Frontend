@@ -11,6 +11,9 @@ const axiosConnection = axios.create({
             : null,
         'Content-Type': 'application/json',
         accept: 'application/json',
+		'Access-Control-Allow-Origin':  'https://hocsnest.herokuapp.com',
+		'Access-Control-Allow-Methods': 'POST',
+		'Access-Control-Allow-Headers': 'Content-Type, Authorization'
     },
 })
 

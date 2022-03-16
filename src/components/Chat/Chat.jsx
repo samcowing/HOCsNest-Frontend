@@ -36,7 +36,7 @@ function Chat({ theme }) {
 
   const [messages, setMessages] = useState([])
   const [inputValue, setInputValue] = useState('')
-  const [user, setUser] = useState('')
+  const [user, setUser] = useState({})
   const [room, setRoom] = useState('')
   const [client, setClient] = useState({})
   const [activeRoom, setActiveRoom] = useState(false)

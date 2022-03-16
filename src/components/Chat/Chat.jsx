@@ -106,7 +106,6 @@ function Chat({ theme }) {
           username: element.user.username
         }
       })
-      console.log(prevMessages.reverse())
       setMessages(prevMessages.reverse())
     }
     client.onmessage = (message) => {

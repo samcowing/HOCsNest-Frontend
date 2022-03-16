@@ -39,7 +39,7 @@ function Chat({ theme }) {
   const [user, setUser] = useState('')
   const [room, setRoom] = useState('')
   const [client, setClient] = useState({})
-  const [activeRoom, setActiveRoom] = useState('false')
+  const [activeRoom, setActiveRoom] = useState(false)
 
   const [roomsArr, setRoomsArr] = useState([
     { name: 'home' },
@@ -59,7 +59,7 @@ function Chat({ theme }) {
     setClient(new_client)
     setActiveRoom(room)
     if (activeRoom === room) {
-      setActiveRoom('true')
+      setActiveRoom(true)
     }
     setInputValue('')
   }

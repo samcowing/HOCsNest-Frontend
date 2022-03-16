@@ -52,7 +52,7 @@ function Chat({ theme }) {
   const roomSelect = async (e) => {
     e.preventDefault()
     const token = window.localStorage.getItem('refresh_token')
-    const new_client = new W3CWebSocket('wss://backend-hocsnest.herokuapp.com/ws/chat/' + room + '/' + '?token=' + token)
+    const new_client = new W3CWebSocket('ws://backend-hocsnest.herokuapp.com/ws/chat/' + room + '/' + '?token=' + token)
     if (token === null) {
       navigate('/login')
     }

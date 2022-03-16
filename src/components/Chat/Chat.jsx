@@ -52,7 +52,7 @@ function Chat({ theme }) {
   const roomSelect = async (e) => {
     e.preventDefault()
     const token = window.localStorage.getItem('refresh_token')
-    const new_client = new W3CWebSocket('wss://backend-hocsnest.herokuapp.com/ws/chat/' + room + '/' + '?token=' + token)
+    const new_client = new W3CWebSocket('wss://backend-hocsnest.herokuapp/ws/chat/' + room + '/' + '?token=' + token)
     if (token === null) {
       navigate('/login')
     }
@@ -100,7 +100,7 @@ function Chat({ theme }) {
   useEffect(() => {
     client.onopen = async () => {
       console.log('WebSocket Client Connected')
-      const res = await axios.get("https://backend-hocsnest.herokuapp/api/messages?room=" + room + '&page=1')
+      const res = await axios.get("https://backend-hocsnest.herokuapp.com/api/messages?room=" + room + '&page=1')
       const prevMessages = res.data.results.map((element) => {
         return {
           message: element.message,

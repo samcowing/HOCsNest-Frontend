@@ -100,7 +100,7 @@ function Chat({ theme }) {
   useEffect(() => {
     client.onopen = async () => {
       console.log('WebSocket Client Connected')
-      const res = await axios.get("http://localhost:8000/api/messages?room=" + room + '&page=1')
+      const res = await axios.get("https://backend-hocsnest.herokuapp/api/messages?room=" + room + '&page=1')
       const prevMessages = res.data.results.map((element) => {
         return {
           message: element.message,

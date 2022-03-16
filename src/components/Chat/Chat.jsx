@@ -103,9 +103,10 @@ function Chat({ theme }) {
       const prevMessages = res.data.results.map((element) => {
         return {
           message: element.message,
-          username: element.username
+          username: element.user.username
         }
       })
+      console.log(prevMessages.reverse())
       setMessages(prevMessages.reverse())
     }
     client.onmessage = (message) => {
@@ -118,7 +119,7 @@ function Chat({ theme }) {
             email: dataFromServer.email,
           }
           setUser(tmpUser)
-          print(tmpUser)
+          console.log(tmpUser)
         }
       }
     }
